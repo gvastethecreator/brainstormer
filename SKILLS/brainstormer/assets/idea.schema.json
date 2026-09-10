@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brainstormer idea input v1",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pitch": {
+      "type": "string",
+      "minLength": 1
+    },
+    "user_value": {
+      "type": "string",
+      "minLength": 1
+    },
+    "use_case": {
+      "type": "string",
+      "minLength": 1
+    },
+    "novelty_delta": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "enum": [
+              "code",
+              "test",
+              "documentation",
+              "user",
+              "hypothesis"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "finding": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "kind",
+          "source",
+          "finding"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "novelty": {
+      "type": "object",
+      "properties": {
+        "assessment": {
+          "enum": [
+            "not-found-in-inspected-scope",
+            "distinct-extension",
+            "unknown"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "inspected_scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "uncertainty": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "assessment",
+        "confidence",
+        "inspected_scope",
+        "uncertainty"
+      ],
+      "additionalProperties": false
+    },
+    "prototype": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "working-slice",
+            "approximation",
+            "simulation",
+            "omitted"
+          ]
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observable": {
+          "type": "string",
+          "minLength": 1
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "check": {
+                "type": "string",
+                "minLength": 1
+              },
+              "result": {
+                "enum": [
+                  "passed",
+                  "failed",
+                  "not-run"
+                ]
+              }
+            },
+            "required": [
+              "check",
+              "result"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "mode",
+        "question",
+        "observable",
+        "limitations",
+        "checks"
+      ],
+      "additionalProperties": false
+    },
+    "open_question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^I[0-9]{3,}$"
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "title",
+    "category",
+    "pitch",
+    "user_value",
+    "use_case",
+    "novelty_delta",
+    "evidence",
+    "novelty",
+    "prototype",
+    "open_question",
+    "parent_ids"
+  ],
+  "additionalProperties": false
+}

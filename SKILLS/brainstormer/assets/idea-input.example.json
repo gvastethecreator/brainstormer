@@ -1,0 +1,24 @@
+{
+  "title": "Nombre concreto de una feature",
+  "category": "capacidad",
+  "pitch": "Resultado nuevo que la persona podría obtener.",
+  "user_value": "Quién lo usaría, en qué situación y por qué importa.",
+  "use_case": "Un ejemplo de entrada, acción y resultado observable.",
+  "novelty_delta": "Diferencia con lo que existe o hipótesis claramente identificada.",
+  "evidence": [],
+  "novelty": {
+    "assessment": "unknown",
+    "confidence": "low",
+    "inspected_scope": [],
+    "uncertainty": "Plantilla: todavía no se inspeccionó ningún proyecto."
+  },
+  "prototype": {
+    "mode": "simulation",
+    "question": "¿Qué experiencia concreta buscamos comparar?",
+    "observable": "Qué cambia al usar el control principal.",
+    "limitations": ["Plantilla: reemplazar por límites de la demo real."],
+    "checks": [{"check": "Interacción principal en navegador", "result": "not-run"}]
+  },
+  "open_question": "La principal incertidumbre de producto, sin desglosar tareas técnicas.",
+  "parent_ids": []
+}
