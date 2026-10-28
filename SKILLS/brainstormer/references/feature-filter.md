@@ -27,8 +27,9 @@ no líneas de código, cantidad de pantallas o presencia de IA.
 
 Explorá más candidatas que las que mostrás. Descartá las que ya existen, los clones
 semánticos, las ideas sin usuario concreto y las que sólo agregan gestión o UI.
-Elegí normalmente 4–6 con diferencias observables. Si el usuario pide diez, buscá
-diez sólidas; no rellenes con duplicados ni cambies el número silenciosamente.
+Elegí opciones con diferencias observables y respetá la cantidad pedida. Si faltan
+candidatas sólidas, explicá el límite; no rellenes con duplicados ni cambies el
+alcance silenciosamente.
 
 Variar fuentes, efectos, tiempo, composición y salidas es una forma de explorar,
 no una obligación de cubrir categorías. Una ronda sólo de efectos es válida:

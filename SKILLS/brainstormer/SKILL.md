@@ -1,5 +1,6 @@
 ---
 name: brainstormer
+license: MIT
 description: "Product feature discovery. Use to explore new capabilities in an existing project with concrete ideas and small interactive prototypes."
 compatibility: "Full sessions need project reads and local writes. Offline HTML previews use a browser; the optional helper needs Python 3.10+ and its standard library."
 metadata:
@@ -45,7 +46,7 @@ Considerá nuevas entradas, transformaciones, comportamiento temporal, composici
 
 Conservá una candidata si tiene usuario y situación concretos, resultado nuevo, encaje con el producto, diferencia frente a lo existente y una hipótesis que pueda experimentarse. Consultá [feature-filter.md](references/feature-filter.md) cuando el umbral sea dudoso.
 
-Elegí una ronda variada, normalmente de 4–6 ideas o la cantidad pedida. Presentá menos si no hay suficientes ideas sólidas. Los bugs, refactors y ajustes cosméticos pueden ser relevantes, pero no sustituyen la búsqueda de capacidades nuevas. Evitá inventar demanda, ROI o viabilidad.
+Elegí una ronda variada y manejable que respete la cantidad pedida. Si no hay suficientes ideas sólidas, explicá el límite en vez de rellenar con duplicados. Los bugs, refactors y ajustes cosméticos pueden ser relevantes, pero no sustituyen la búsqueda de capacidades nuevas. Evitá inventar demanda, ROI o viabilidad.
 
 **Termina cuando:** cada opción tiene valor y diferencia explicables, y la ronda aporta alternativas reales.
 

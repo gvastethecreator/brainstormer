@@ -74,7 +74,7 @@ Para canvas, agregá descripción textual del estado. No uses color como única 
 5. Si hay exportación real, abrir/inspeccionar el archivo y validar estructura básica.
 6. Revisar navegación por teclado y notas de simulación en el viewport de la prueba. Agregar un ancho móvil cuando el experimento o un cambio responsive lo requiera.
 
-Guardar capturas en la carpeta indicada por el repositorio, normalmente `.scratch/screenshots/<task-slug>/`. Copiar evidencia durable a su dueño y retirar las capturas temporales al cerrar.
+Guardar capturas en la carpeta indicada por el repositorio, normalmente `.scratch/screenshots/<task-slug>/`. Conservar evidencia única y el contexto necesario. Si hay residuos, registrar el lote y su dueño; retirarlos sólo con la autoridad que exige el proyecto. Cerrar una ronda no autoriza borrados ni movimientos.
 
 Registrá resultados concretos. Un screenshot sólo prueba apariencia en un estado;
 no demuestra interacción. Una prueba de interacción tampoco prueba valor del producto.

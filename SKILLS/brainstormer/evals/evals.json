@@ -6,12 +6,12 @@
       "id": "B01",
       "prompt": "Usá brainstormer para explorar nuevas features de este editor de shaders.",
       "setup": "Repo con registros de fuentes/efectos/exportadores y documentación legible.",
-      "expected_output": "Inspecciona capacidades y contexto antes de sugerir. Crea sesión bajo .scratch/brainstorming. Presenta 4–6 capacidades sustanciales con demos independientes, o menos con razón de calidad. No escribe en código, tareas ni configuración.",
+      "expected_output": "Inspecciona capacidades y contexto antes de sugerir. Crea sesión bajo .scratch/brainstorming. Presenta una ronda manejable de capacidades sustanciales con demos independientes; explica cualquier límite de calidad. No escribe en código, tareas ni configuración.",
       "files": [],
       "assertions": [
         "Inspecciona capacidades y contexto antes de sugerir.",
         "Crea sesión bajo .scratch/brainstorming.",
-        "Presenta 4–6 capacidades sustanciales con demos independientes, o menos con razón de calidad.",
+        "Presenta una ronda manejable de capacidades sustanciales con demos independientes; explica cualquier límite de calidad.",
         "No escribe en código, tareas ni configuración."
       ]
     },
@@ -148,11 +148,11 @@
       "id": "B13",
       "prompt": "Ahora sí, prepará un plan para I003. No implementes.",
       "setup": "Idea guardada y cambio explícito de etapa.",
-      "expected_output": "Reconoce el pedido separado de planificación. No interpreta el plan como permiso de implementación. Las demás ideas conservan su estado de exploración.",
+      "expected_output": "Reconoce el cambio a planificación fuera de la sesión. Conserva las fichas y no implementa ni trata otras ideas como aprobadas.",
       "files": [],
       "assertions": [
         "Reconoce el pedido separado de planificación.",
-        "No interpreta el plan como permiso de implementación.",
+        "Conserva las fichas y no interpreta el plan como permiso de implementación.",
         "Las demás ideas conservan su estado de exploración."
       ]
     },
@@ -247,17 +247,6 @@
       "assertions": [
         "Evalúa la capacidad y el caso de uso, no el tamaño del código.",
         "No rechaza automáticamente la idea por pequeña."
-      ]
-    },
-    {
-      "id": "B22",
-      "prompt": "Ahora armá un plan de I002, pero no la implementes.",
-      "setup": "Sesión exploratoria con I002 conservada.",
-      "expected_output": "Reconoce el cambio explícito a planificación fuera de la sesión. Conserva las fichas y no implementa ni trata otras ideas como aprobadas.",
-      "files": [],
-      "assertions": [
-        "Reconoce el cambio explícito a planificación fuera de la sesión.",
-        "Conserva las fichas y no implementa ni trata otras ideas como aprobadas."
       ]
     },
     {

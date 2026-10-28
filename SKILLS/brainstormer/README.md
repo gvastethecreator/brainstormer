@@ -50,7 +50,7 @@ sintaxis para invocar skills; no se presupone un comando universal.
 ## Qué pasa durante una sesión
 
 El agente entiende el producto y contrasta lo existente. Para una sesión completa, abre una carpeta; una ronda pedida solo en chat no crea archivos.
-Genera una ronda manejable de 4–6 ideas —o las que pidas— con demos independientes.
+Genera una ronda manejable que respeta la cantidad pedida, con demos independientes cuando forman parte del encargo.
 Vos probás, combinás, conservás, descartás o pedís nuevas rondas. Quedan fichas,
 prototipos y decisiones; no un roadmap. No hace falta elegir una sola idea.
 
@@ -62,6 +62,7 @@ registra el descarte y mantiene la exploración abierta. No autoriza construir n
 
 | Archivo | Función |
 | --- | --- |
+| `LICENSE` | Aviso MIT que debe acompañar la copia portable. |
 | `SKILL.md` | Instrucciones que carga el agente; instrucciones centrales compactas. |
 | `references/session-contract.md` | Evidencia, persistencia, estados, rondas y helper. |
 | `references/feature-filter.md` | Umbral de novedad, valor concreto y selección de rondas. |

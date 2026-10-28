@@ -146,6 +146,7 @@ ideas aún sin decidir y áreas que el usuario pidió explorar después. Son not
 conversación, no tareas. No arrastres restricciones específicas de un proyecto a
 otro sin evidencia. Para referir ideas de otra sesión usá su sesión e ID completos.
 
-«Dale», «sigamos» y «me gusta» no elevan permisos de escritura. Un pedido explícito
-de plan es un cambio de etapa que debe quedar separado del laboratorio; implementar
-requiere un pedido propio. Ni favoritos ni filtros del índice representan permisos.
+Interpretá «dale», «sigamos» y «me gusta» con el alcance ya autorizado. Por sí solos
+no convierten una exploración en implementación. Un pedido de plan cambia la etapa
+y conserva su límite; una autorización de implementación permite continuar sin
+pedirla otra vez. Ni favoritos ni filtros del índice representan permisos.
