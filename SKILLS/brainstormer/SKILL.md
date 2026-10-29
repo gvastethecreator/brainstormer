@@ -36,7 +36,7 @@ Distingí implementado, parcial, documentado, pendiente e incierto. Un nombre de
 
 Para una sesión persistente, leé [session-contract.md](references/session-contract.md). Creá una carpeta nueva o retomá la solicitada conservando IDs, decisiones y revisiones. Registrá objetivo, alcance inspeccionado, fuentes y supuestos en `context.md`.
 
-El helper [session.py](scripts/session.py) asigna IDs y mantiene archivos; no inspecciona el producto ni decide novedad. Resolvé `<skill-root>` a la carpeta instalada y consultá `python <skill-root>/scripts/session.py --help`. Aplicá `simple-english`, si está disponible, antes de redactar un brief o plan; conservá el idioma del artefacto.
+El helper [session.py](scripts/session.py) asigna IDs y mantiene archivos; no inspecciona el producto ni decide novedad. Resolvé `<skill-root>` a la carpeta instalada y consultá `python <skill-root>/scripts/session.py --help`. Redactá briefs y planes con acciones concretas, frases cortas y términos consistentes; conservá el idioma del artefacto, los comandos y la incertidumbre. No requiere otras skills.
 
 **Termina cuando:** la sesión tiene contexto suficiente para retomarse. Para una ronda solo en chat, este paso se omite. Sin escritura, entregá las ideas y declaralo; ofrecé archivos solo si la herramienta puede crearlos.
 
