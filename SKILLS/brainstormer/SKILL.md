@@ -5,75 +5,75 @@ description: "Product feature discovery. Use to explore new capabilities in an e
 compatibility: "Full sessions need project reads and local writes. Offline HTML previews use a browser; the optional helper needs Python 3.10+ and its standard library."
 metadata:
   version: "1.1.0"
-  language: es
+  language: en
 ---
 
 # Brainstormer
 
-Explorá qué capacidades nuevas merece la pena agregar a un producto. Convertí las ideas en experiencias pequeñas que el usuario pueda probar, comparar, conservar o descartar. Usá su idioma y conservá los identificadores técnicos.
+Explore which new capabilities are worth adding to a product. Turn the ideas into small experiences that the user can try, compare, keep, or discard. Use the user's language and keep technical identifiers.
 
-## Contrato
+## Contract
 
-- Una feature habilita un resultado, un flujo o una posibilidad expresiva nueva para alguien concreto. La novedad depende de lo que permite hacer, no del tamaño del código.
-- Cada opción describe una capacidad específica. «Más efectos» es una categoría; cada efecto propuesto necesita comportamiento, uso y demo propios.
-- Una sesión completa escribe en `.scratch/brainstorming/`. El código de las demos está autorizado; integrar la idea en el producto, cambiar configuración o crear tickets requiere un pedido de esa acción.
-- «Me gusta», «guardala» o «profundicemos» mantienen la exploración. Si el usuario pide planificar o implementar, cerrar el registro y continuar bajo ese nuevo alcance, reutilizando su autorización.
-- Si pide solo ideas o una respuesta en chat, entregar esa ronda sin crear un laboratorio ni prototipos obligatorios. Si pide guardar las ideas, conservar fichas con la omisión del prototipo documentada.
+- A feature enables a new outcome, flow, or expressive possibility for a specific person. Novelty depends on what it lets someone do, not on code size.
+- Each option describes one specific capability. "More effects" is a category; each proposed effect needs its own behavior, use, and demo.
+- A full session writes to `.scratch/brainstorming/`. Demo code is authorized; integrating the idea into the product, changing configuration, or creating tickets requires a request for that action.
+- "I like it", "save it", or "let's go deeper" keep the exploration going. If the user asks to plan or implement, close the session record and continue under that new scope, reusing the authorization that request gives.
+- If the user asks for ideas only or for an answer in chat, deliver that round without creating a lab or required prototypes. If they ask to save the ideas, keep idea records with the prototype omission documented.
 
-Respetá las rutas del repositorio. Las capturas de navegador usan su carpeta de capturas, separada de las demos; conservá prueba durable solo cuando sea necesaria. Si el repo exige otro dueño para prototipos, usalo y enlazalo desde la sesión. El helper admite su estructura fija: en otra estructura, mantené el registro manualmente.
+Respect the repository's paths. Browser screenshots use the repository's screenshot folder, separate from the demos; keep durable proof only when it is needed. If the repo requires another owner for prototypes, use it and link to it from the session. The helper supports its fixed structure: in another structure, keep the session record manually.
 
-## Proceso
+## Process
 
-### 1. Entender el producto y lo ya explorado
+### 1. Understand the product and what was already explored
 
-Leé reglas, propósito, público, recorrido principal y restricciones. Revisá los registros de capacidades, comandos, entradas/salidas, pantallas o handlers relevantes, junto con documentación y tests. Empezá por índices y fichas de sesiones anteriores; abrí solo los prototipos necesarios para comparar.
+Read the rules, purpose, audience, main journey, and constraints. Review the relevant capability registries, commands, inputs/outputs, screens, or handlers, together with docs and tests. Start with the indexes and idea records of previous sessions; open only the prototypes you need for comparison.
 
-Distingí implementado, parcial, documentado, pendiente e incierto. Un nombre de archivo, dependencia o búsqueda vacía no demuestra una capacidad ni su ausencia. Ampliá la inspección solo para comprobar una candidata. Con acceso incompleto, presentá hipótesis y nombrá el alcance revisado.
+Distinguish implemented, partial, documented, pending, and uncertain. A file name, a dependency, or an empty search does not prove a capability or its absence. Widen the inspection only to check a candidate. With incomplete access, present hypotheses and name the scope you reviewed.
 
-**Termina cuando:** hay una lectura breve del producto, evidencia de sus capacidades y límites de acceso. Preguntá solo si una decisión ausente cambia de forma sustancial el valor de las propuestas.
+**Done when:** there is a short summary of the product, evidence of its capabilities, and the access limits. Ask only if a missing decision substantially changes the value of the proposals.
 
-### 2. Abrir o retomar la sesión, cuando corresponda
+### 2. Open or resume the session, when it applies
 
-Para una sesión persistente, leé [session-contract.md](references/session-contract.md). Creá una carpeta nueva o retomá la solicitada conservando IDs, decisiones y revisiones. Registrá objetivo, alcance inspeccionado, fuentes y supuestos en `context.md`.
+For a persistent session, read [session-contract.md](references/session-contract.md). Create a new folder or resume the requested one, and keep its IDs, decisions, and revisions. Record the goal, inspected scope, sources, and assumptions in `context.md`.
 
-El helper [session.py](scripts/session.py) asigna IDs y mantiene archivos; no inspecciona el producto ni decide novedad. Resolvé `<skill-root>` a la carpeta instalada y consultá `python <skill-root>/scripts/session.py --help`. Redactá briefs y planes con acciones concretas, frases cortas y términos consistentes; conservá el idioma del artefacto, los comandos y la incertidumbre. No requiere otras skills.
+The [session.py](scripts/session.py) helper assigns IDs and maintains files; it does not inspect the product or decide novelty. Resolve `<skill-root>` to the installed folder and check `python <skill-root>/scripts/session.py --help`. Write briefs and plans with concrete actions, short sentences, and consistent terms; keep the artifact's language, the commands, and the uncertainty. No other skills are required.
 
-**Termina cuando:** la sesión tiene contexto suficiente para retomarse. Para una ronda solo en chat, este paso se omite. Sin escritura, entregá las ideas y declaralo; ofrecé archivos solo si la herramienta puede crearlos.
+**Done when:** the session has enough context to be resumed. For a chat-only round, skip this step. Without write access, deliver the ideas and say so; offer files only if the tool can create them.
 
-### 3. Filtrar candidatas
+### 3. Filter candidates
 
-Considerá nuevas entradas, transformaciones, comportamiento temporal, composición, salidas, reutilización y dominios adyacentes. Son lentes de búsqueda, no cuotas ni motivos para agregar IA o colaboración por reflejo.
+Consider new inputs, transformations, temporal behavior, composition, outputs, reuse, and adjacent domains. These are search lenses, not quotas or reasons to add AI or collaboration by reflex.
 
-Conservá una candidata si tiene usuario y situación concretos, resultado nuevo, encaje con el producto, diferencia frente a lo existente y una hipótesis que pueda experimentarse. Consultá [feature-filter.md](references/feature-filter.md) cuando el umbral sea dudoso.
+Keep a candidate if it has a concrete user and situation, a new outcome, fit with the product, a difference from what exists, and a hypothesis that someone can try out. Consult [feature-filter.md](references/feature-filter.md) when the threshold is unclear.
 
-Elegí una ronda variada y manejable que respete la cantidad pedida. Si no hay suficientes ideas sólidas, explicá el límite en vez de rellenar con duplicados. Los bugs, refactors y ajustes cosméticos pueden ser relevantes, pero no sustituyen la búsqueda de capacidades nuevas. Evitá inventar demanda, ROI o viabilidad.
+Choose a varied, manageable round that respects the requested count. If there are not enough solid ideas, explain the limit instead of padding with duplicates. Bugs, refactors, and cosmetic tweaks can be relevant, but they do not replace the search for new capabilities. Do not invent demand, ROI, or feasibility.
 
-**Termina cuando:** cada opción tiene valor y diferencia explicables, y la ronda aporta alternativas reales.
+**Done when:** each option has a value and a difference that you can explain, and the round offers real alternatives.
 
-### 4. Hacer experimentable cada propuesta
+### 4. Make each proposal hands-on
 
-En una sesión con demos, leé [prototype-contract.md](references/prototype-contract.md) antes de construir. Prepará una ficha y un HTML independiente por opción, con una interacción que cambie el resultado central y un reinicio. Usá datos sintéticos o fixtures autorizados y rotulá lo real, aproximado y simulado.
+In a session with demos, read [prototype-contract.md](references/prototype-contract.md) before you build. Prepare one idea record and one standalone HTML file per option, with one interaction that changes the core result and a reset. Use synthetic data or authorized fixtures, and label what is real, approximate, and simulated.
 
-Preferí HTML autocontenido y offline. Una CLI puede representarse con un terminal simulado de comandos limitados; nunca ejecutes shell real desde la demo. Una plantilla incompleta no cuenta como prototipo.
+Prefer self-contained, offline HTML. A CLI can be represented by a simulated terminal with limited commands; never run a real shell from the demo. An incomplete template does not count as a prototype.
 
-Al cerrar la ronda, abrí cada demo, comprobá su control principal, reinicio y enlaces; revisá consola y red con el navegador disponible. Un screenshot prueba un estado visual, no la interacción. Sin navegador, registrá `not-run` y explicá qué queda sin comprobar.
+When you close the round, open each demo and check its main control, reset, and links; review the console and network with the available browser. A screenshot proves a visual state, not the interaction. Without a browser, record `not-run` and explain what remains unchecked.
 
-**Termina cuando:** cada propuesta tiene demo utilizable y evidencia de lo probado, o una omisión pedida o causada por una limitación real.
+**Done when:** each proposal has a usable demo and evidence of what was tested, or an omission that the user requested or that a real limitation caused.
 
-### 5. Presentar y continuar la exploración
+### 5. Present and continue the exploration
 
-Mostrá la lectura breve del proyecto y, por idea: ID si está guardada, nombre, resultado nuevo, diferencia con lo existente, incertidumbre y enlace real a la demo cuando exista. Pedí una sola decisión ligera sobre la ronda; no obligues a elegir una favorita ni aprobar toda la tanda.
+Show the short summary of the project and, per idea: the ID if it is saved, name, new outcome, difference from what exists, uncertainty, and a real link to the demo when one exists. Ask for one light decision about the round; do not force the user to pick a favorite or to approve the whole batch.
 
-Usá las reacciones para explorar, guardar, descartar, variar o combinar. «Más opciones» abre otra ronda. Evitá cuestionarios de arquitectura, cronogramas o detalles técnicos que todavía no cambian la experiencia.
+Use the reactions to explore, save, discard, vary, or combine. "More options" opens another round. Avoid questionnaires about architecture, schedules, or technical details that do not change the experience yet.
 
-**Termina cuando:** las opciones se pueden comparar y el usuario entiende qué decisión está abierta.
+**Done when:** the options can be compared and the user understands which decision is open.
 
-### 6. Conservar las decisiones
+### 6. Keep the decisions
 
-`idea.json` es canónico; `session.json` conserva IDs e historial. `brief.md`, `session.md` e `index.html` son vistas derivadas. El índice permite navegar y filtrar: no promete escribir decisiones en disco desde el navegador.
+`idea.json` is canonical; `session.json` keeps the IDs and history. `brief.md`, `session.md`, and `index.html` are derived views. The index supports navigation and filtering: it does not promise to write decisions to disk from the browser.
 
-Los estados son `proposed`, `exploring`, `saved`, `parked` y `discarded`. `saved` conserva una posibilidad; no compromete su construcción. Registrá solo decisiones expresadas: el silencio deja el estado intacto.
+The statuses are `proposed`, `exploring`, `saved`, `parked`, and `discarded`. `saved` keeps a possibility; it does not commit to building it. Record only expressed decisions: silence leaves the status unchanged.
 
-Una variante o combinación usa un ID nuevo con `parent_ids`; un refinamiento conserva ID y guarda revisión previa. Actualizá las vistas desde los registros. Leé el contrato de sesión para los comandos y la recuperación de discrepancias.
+A variant or combination uses a new ID with `parent_ids`; a refinement keeps the ID and saves the previous revision. Update the views from the records. Read the session contract for the commands and for recovery from mismatches.
 
-**Termina cuando:** fichas, demos, índice y decisiones coinciden, o la respuesta en chat deja claro qué se propuso sin persistirlo. Cerrá con lo conservado, la incertidumbre y las pruebas pendientes, sin agregar un roadmap por iniciativa propia.
+**Done when:** idea records, demos, index, and decisions match, or the chat answer makes clear what was proposed without persisting it. Close with what was kept, the uncertainty, and the pending checks, without adding a roadmap on your own initiative.

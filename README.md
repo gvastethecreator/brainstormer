@@ -2,7 +2,7 @@
 
 Agent Skill for product feature discovery. It turns ideas into small interactive prototypes the user can try, keep, or discard.
 
-The operating skill is written in Spanish. Session files go in `.scratch/brainstorming/`, not inside this package.
+The operating skill is written in English. Session files go in `.scratch/brainstorming/`, not inside this package.
 
 ## Quick start
 
@@ -19,6 +19,6 @@ python <skill-root>/scripts/session.py --help
 python -m unittest discover -s <skill-root>/tests -v
 ```
 
-Spanish install notes and prompts: [SKILLS/brainstormer/README.md](SKILLS/brainstormer/README.md). Operating contract: [SKILL.md](SKILLS/brainstormer/SKILL.md).
+Install notes and prompts: [SKILLS/brainstormer/README.md](SKILLS/brainstormer/README.md). Operating contract: [SKILL.md](SKILLS/brainstormer/SKILL.md).
 
 License: [MIT](LICENSE).

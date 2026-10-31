@@ -1,114 +1,114 @@
 # brainstormer · v1.1.0
 
-Una skill para explorar nuevas capacidades de un producto con propuestas concretas,
-conversación y prototipos pequeños. **No es una auditoría, una grill de detalles,
-un planificador ni un agente de implementación.**
+A skill to explore new product capabilities with concrete proposals,
+conversation, and small prototypes. **It is not an audit, a detail grill,
+a planner, or an implementation agent.**
 
-## Instalar
+## Install
 
-Copiá la carpeta completa `brainstormer/` al directorio de skills que descubra tu
-agente. No copies sólo `SKILL.md`: sus referencias, plantillas y helper son parte
-del paquete. Como ubicación de proyecto podés usar `.agents/skills/brainstormer/`
-cuando tu entorno admita ese directorio. Otros hosts requieren otra ruta; el
-formato del paquete no implica detección automática universal.
+Copy the whole `brainstormer/` folder into the skills directory that your
+agent discovers. Do not copy only `SKILL.md`: its references, templates, and helper are part
+of the package. As a project location, you can use `.agents/skills/brainstormer/`
+when your environment supports that directory. Other hosts need another path; the
+package format does not imply universal automatic discovery.
 
-La instalación de la skill y sus archivos es una acción diferente a ejecutar una
-sesión. **Los resultados de las sesiones van en `.scratch/brainstorming/`**, salvo una ruta de artefactos exigida por el repositorio; nunca
-dentro de la carpeta de la skill. Este paquete no modifica ni instala nada en un
-repositorio remoto automáticamente.
+Installing the skill and its files is a different action from running a
+session. **Session results go in `.scratch/brainstorming/`**, unless the repository requires an artifact path; never
+inside the skill folder. This package does not modify or install anything in a
+remote repository automatically.
 
-## Invocación recomendada
-
-```text
-Usá la skill brainstormer en este proyecto.
-Analizá qué hace, qué capacidades tiene y qué ideas exploramos antes.
-Proponé una primera ronda de features nuevas y sustanciales, coherentes con el
-producto. Prepará una ficha y un HTML interactivo independiente por opción en
-.scratch/brainstorming. Quiero explorar posibilidades; no implementes cambios,
-no generes tickets y no armes todavía un plan de ejecución.
-```
-
-Para una ronda específica:
+## Recommended invocation
 
 ```text
-Usá brainstormer, pero esta ronda dedicada a efectos nuevos.
-Cada opción debe ser un efecto distinto, explicado con un uso concreto y un
-prototipo que permita apreciar su comportamiento. Evitá presets de lo existente.
+Use the brainstormer skill in this project.
+Analyze what it does, which capabilities it has, and which ideas we explored before.
+Propose a first round of new, substantial features that fit the
+product. Prepare an idea record and a standalone interactive HTML file per option in
+.scratch/brainstorming. I want to explore possibilities; do not implement changes,
+do not generate tickets, and do not build an execution plan yet.
 ```
 
-Para retomar:
+For a specific round:
 
 ```text
-Retomá nuestra última sesión de brainstormer. Leé las ideas y decisiones guardadas.
-Mostrame dónde quedamos y continuemos con opciones nuevas, sin repetir descartes
-ni convertir favoritas en tareas.
+Use brainstormer, but dedicate this round to new effects.
+Each option must be a distinct effect, explained with a concrete use and a
+prototype that lets me observe its behavior. Avoid presets of what already exists.
 ```
 
-Estos son pedidos en lenguaje natural. Un host puede ofrecer además su propia
-sintaxis para invocar skills; no se presupone un comando universal.
+To resume:
 
-## Qué pasa durante una sesión
+```text
+Resume our last brainstormer session. Read the saved ideas and decisions.
+Show me where we left off and let's continue with new options, without repeating discards
+or turning favorites into tasks.
+```
 
-El agente entiende el producto y contrasta lo existente. Para una sesión completa, abre una carpeta; una ronda pedida solo en chat no crea archivos.
-Genera una ronda manejable que respeta la cantidad pedida, con demos independientes cuando forman parte del encargo.
-Vos probás, combinás, conservás, descartás o pedís nuevas rondas. Quedan fichas,
-prototipos y decisiones; no un roadmap. No hace falta elegir una sola idea.
+These are natural-language requests. A host can also offer its own
+syntax to invoke skills; no universal command is assumed.
 
-Un ejemplo de conversación es: «Guardemos I001 e I004; I002 no encaja. Hagamos una
-variante de I003 y después mostrame más fuentes de entrada». Esto conserva ideas,
-registra el descarte y mantiene la exploración abierta. No autoriza construir nada.
+## What happens during a session
 
-## Qué incluye la carpeta
+The agent understands the product and checks it against what exists. For a full session, it opens a folder; a round requested only in chat creates no files.
+It generates a manageable round that respects the requested count, with standalone demos when they are part of the request.
+You try, combine, keep, discard, or ask for new rounds. What remains is idea records,
+prototypes, and decisions; not a roadmap. You do not need to pick a single idea.
 
-| Archivo | Función |
+An example conversation is: "Let's save I001 and I004; I002 does not fit. Let's make a
+variant of I003 and then show me more input sources". This keeps ideas,
+records the discard, and keeps the exploration open. It does not authorize building anything.
+
+## What the folder includes
+
+| File | Purpose |
 | --- | --- |
-| `LICENSE` | Aviso MIT que debe acompañar la copia portable. |
-| `SKILL.md` | Instrucciones que carga el agente; instrucciones centrales compactas. |
-| `references/session-contract.md` | Evidencia, persistencia, estados, rondas y helper. |
-| `references/feature-filter.md` | Umbral de novedad, valor concreto y selección de rondas. |
-| `references/prototype-contract.md` | Interactividad, simulación honesta y pruebas. |
-| `assets/idea.schema.json` | Esquema de la ficha de entrada. |
-| `assets/idea-input.example.json` | Ejemplo editable, no una idea ya validada. |
-| `assets/prototype-template.html` | Esqueleto marcado como incompleto, no una demo aprobable. |
-| `scripts/session.py` | Helper opcional para archivos, IDs, decisiones, revisiones e índice. |
-| `tests/test_session.py` | pruebas unitarias del helper. |
-| `evals/evals.json` | Casos de evaluación conversacional; no ejecutados con agentes en esta entrega. |
+| `LICENSE` | MIT notice that must accompany the portable copy. |
+| `SKILL.md` | Instructions that the agent loads; compact core instructions. |
+| `references/session-contract.md` | Evidence, persistence, statuses, rounds, and helper. |
+| `references/feature-filter.md` | Novelty threshold, concrete value, and round selection. |
+| `references/prototype-contract.md` | Interactivity, honest simulation, and testing. |
+| `assets/idea.schema.json` | Schema of the input idea record. |
+| `assets/idea-input.example.json` | Editable example, not an already validated idea. |
+| `assets/prototype-template.html` | Skeleton marked as incomplete, not an approvable demo. |
+| `scripts/session.py` | Optional helper for files, IDs, decisions, revisions, and index. |
+| `tests/test_session.py` | Unit tests for the helper. |
+| `evals/evals.json` | Conversational evaluation cases; not run with agents in this release. |
 
-El helper necesita Python 3.10+ y su biblioteca estándar. Las instrucciones pueden
-usarse sin Python escribiendo la misma estructura manualmente. Ninguna parte de la
-skill exige un framework de frontend, proveedor de IA, servicio pago o servidor.
+The helper needs Python 3.10+ and its standard library. The instructions can
+be used without Python by writing the same structure manually. No part of the
+skill requires a frontend framework, AI provider, paid service, or server.
 
-## Probar el helper
+## Test the helper
 
-Desde la carpeta `brainstormer/`:
+From the `brainstormer/` folder:
 
 ```sh
 python -m unittest discover -s tests -v
 python scripts/session.py --help
 ```
 
-Los comandos de sesión están detallados en `references/session-contract.md`.
-El script no inspecciona repositorios, no genera ideas y no evalúa valor: automatiza
-el mantenimiento del laboratorio. Rechaza rutas de escape y symlinks bajo su zona
-de escritura, pero **no es un sandbox para JavaScript no confiable**.
+The session commands are described in `references/session-contract.md`.
+The script does not inspect repositories, generate ideas, or assess value: it automates
+lab maintenance. It rejects escape paths and symlinks under its write
+zone, but **it is not a sandbox for untrusted JavaScript**.
 
-## Evaluar el comportamiento del agente
+## Evaluate the agent's behavior
 
-`evals/evals.json` contiene casos positivos, negativos y límites de autorización.
-Probá cada caso en sesiones aisladas, con fixtures o repositorios de prueba, y compará
-el comportamiento con y sin la skill. Observá las escrituras reales y las demos,
-no sólo que el agente diga que respetó las reglas. No uses esas evaluaciones para
-modificar un repositorio productivo.
+`evals/evals.json` contains positive cases, negative cases, and authorization limits.
+Try each case in isolated sessions, with fixtures or test repositories, and compare
+the behavior with and without the skill. Observe the real writes and the demos,
+not only the agent's claim that it followed the rules. Do not use these evaluations to
+modify a production repository.
 
-La suite comprueba el helper. La plantilla HTML está incompleta a propósito y no demuestra un prototipo funcional. Las pruebas de archivos no equivalen a una evaluación de la skill con agentes; registrar por separado cualquier ejecución real.
+The suite checks the helper. The HTML template is incomplete on purpose and does not demonstrate a working prototype. File tests are not equivalent to an evaluation of the skill with agents; record any real run separately.
 
-## Referencias de diseño
+## Design references
 
-Formato: Agent Skills, especificación oficial (`https://agentskills.io/specification`).
-Descripción activable, instrucciones compactas y referencias bajo demanda:
+Format: Agent Skills, official specification (`https://agentskills.io/specification`).
+Triggerable description, compact instructions, and on-demand references:
 `https://agentskills.io/skill-creation/best-practices`.
-Separación entre pruebas de artefactos y evaluación del agente:
+Separation between artifact tests and agent evaluation:
 `https://agentskills.io/skill-creation/evaluating-skills`.
 
-El nombre, frontmatter y estructura siguen ese formato abierto. La carga y los
-permisos concretos dependen del host donde la instales.
+The name, frontmatter, and structure follow that open format. Loading and
+specific permissions depend on the host where you install it.

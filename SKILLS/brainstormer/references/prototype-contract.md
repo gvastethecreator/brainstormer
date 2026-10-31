@@ -1,81 +1,81 @@
-# Contrato de prototipos
+# Prototype contract
 
-## Qué debe demostrar cada HTML
+## What each HTML file must demonstrate
 
-Una pregunta de producto por demo: «¿Cómo cambiaría el resultado con esta capacidad?».
-Debe existir una interacción que afecte su resultado central, no sólo la interfaz.
-Incluí un estado inicial útil, controles etiquetados, una salida visible, reset y
-una nota legible sobre realidad/simulación. Una demo puede ser muy pequeña.
+One product question per demo: "How would the outcome change with this capability?".
+There must be an interaction that affects its core result, not only the interface.
+Include a useful initial state, labeled controls, a visible output, a reset, and
+a readable note about reality/simulation. A demo can be very small.
 
-Casos orientativos:
+Guiding cases:
 
-| Proyecto | Experiencia mínima útil |
+| Project | Minimum useful experience |
 | --- | --- |
-| Editor de efectos | Entrada sintética/permitida, efecto visible y control que cambia su comportamiento. |
-| Animación | Reproducción, pausa, scrub o comparación temporal y reset. |
-| Exportador | Configurar muestra, ver la salida y generar un archivo real pequeño o declarar el formato simulado. |
-| CLI | Terminal simulado con comandos permitidos, cambio de estado y salida sintética; sin ejecución real. |
-| API/servicio | Entrada → respuesta representativa → diferencia visible; etiquetas claras de datos ficticios. |
-| Herramienta de audio | Secuencia/onda/timeline interactiva; audio opcional iniciado por gesto, nunca autoplay. |
+| Effects editor | Synthetic/allowed input, a visible effect, and a control that changes its behavior. |
+| Animation | Playback, pause, scrub or time comparison, and reset. |
+| Exporter | Configure a sample, see the output, and generate a small real file or declare the format simulated. |
+| CLI | Simulated terminal with allowed commands, state change, and synthetic output; no real execution. |
+| API/service | Input → representative response → visible difference; clear labels for fictional data. |
+| Audio tool | Interactive sequence/waveform/timeline; optional audio started by a gesture, never autoplay. |
 
-No construyas el producto entero. No mezcles cinco hipótesis en una pantalla difícil
-de interpretar. Una galería es navegación hacia prototipos separados, no una excusa
-para que cada tarjeta reemplace su experimento.
+Do not build the whole product. Do not mix five hypotheses in one screen that is hard
+to interpret. A gallery is navigation to separate prototypes, not an excuse
+for each card to replace its experiment.
 
-## Ejecución local
+## Local execution
 
-- Preferí HTML, CSS y JavaScript vanilla embebidos; `file://` debe funcionar.
-- Evitá `fetch`, imports, CDNs, fuentes remotas, telemetría, recursos externos y
-  `service workers`. No instales paquetes para una demo exploratoria.
-- No importes módulos del producto. No arranques su servidor ni ejecutes su CLI.
-- Datos generados en memoria, fixtures pequeños y deterministas cuando sea posible.
-- El estado en memoria se pierde al recargar. No lo presentes como guardado en disco.
-  Las decisiones canónicas las persiste el agente, no una promesa del navegador.
-- Un botón de descarga debe descargar un archivo real o estar marcado inequívocamente
-  como simulación; no muestres «exportado» si no ocurrió. Nombrá exactamente qué se generó.
-- Un prototipo de formato genérico no prueba compatibilidad con motores, codecs o
-  aplicaciones externas. Tampoco prueba rendimiento productivo ni calidad final.
+- Prefer embedded vanilla HTML, CSS, and JavaScript; `file://` must work.
+- Avoid `fetch`, imports, CDNs, remote fonts, telemetry, external resources, and
+  `service workers`. Do not install packages for an exploratory demo.
+- Do not import product modules. Do not start its server or run its CLI.
+- Use data generated in memory and small, deterministic fixtures when possible.
+- In-memory state is lost on reload. Do not present it as saved to disk.
+  The agent persists the canonical decisions, not a browser promise.
+- A download button must download a real file or be marked unambiguously
+  as a simulation; do not show "exported" if it did not happen. Name exactly what was generated.
+- A generic-format prototype does not prove compatibility with engines, codecs, or
+  external applications. It does not prove production performance or final quality either.
 
-El template incluido es deliberadamente incompleto. Conserva un marcador
-`BRAINSTORMER_TEMPLATE_ONLY` que el helper rechaza. No borres el marcador para
-aprobar un esqueleto: implementá y probá primero la experiencia de la idea.
+The included template is deliberately incomplete. It keeps a
+`BRAINSTORMER_TEMPLATE_ONLY` marker that the helper rejects. Do not delete the marker to
+get a skeleton approved: implement and test the idea's experience first.
 
-## Honestidad de la demo
+## Demo honesty
 
-`working-slice`: una porción acotada sí funciona localmente. Enumerá lo que queda fuera.
-`approximation`: comportamiento aproximado, por ejemplo Canvas 2D en vez de WebGL.
-`simulation`: flujo representado con datos y respuestas simuladas, no integración real.
-`omitted`: no se creó por una excepción explícita, documentada y visible.
+`working-slice`: a bounded slice does work locally. List what stays out.
+`approximation`: approximate behavior, for example Canvas 2D instead of WebGL.
+`simulation`: a flow represented with simulated data and responses, not a real integration.
+`omitted`: not created, because of an explicit, documented, and visible exception.
 
-Una misma demo puede tener partes reales y simuladas. Elegí el modo que mejor
-describa la hipótesis principal y explicá las partes. No simules benchmarks,
-autenticación, permisos, colaboración, pagos ni inferencia como si estuvieran conectados.
+One demo can have real and simulated parts. Choose the mode that best
+describes the main hypothesis and explain the parts. Do not simulate benchmarks,
+authentication, permissions, collaboration, payments, or inference as if they were connected.
 
-## Seguridad y ergonomía
+## Safety and ergonomics
 
-Usá `textContent` para entradas del usuario; no `eval`, `Function`, shell real ni
-HTML arbitrario. Si representás una CLI, parseá una gramática pequeña permitida.
-No guardes secretos ni hagas escrituras fuera del directorio de la sesión.
-Cualquier acceso a archivos del usuario debe ser por selección explícita, sólo local.
-No requieren permisos de cámara/micro, y no los solicites salvo experimento acordado.
+Use `textContent` for user input; no `eval`, `Function`, real shell, or
+arbitrary HTML. If you represent a CLI, parse a small allowed grammar.
+Do not store secrets or write outside the session directory.
+Any access to user files must be through explicit selection, and local only.
+Demos do not need camera/mic permissions; do not request them unless the experiment was agreed.
 
-Controles accesibles por teclado, foco visible, labels y contraste suficiente.
-Diseño que funcione en desktop y viewport estrecho sin scroll horizontal inútil.
-Movimiento pausable; respetá `prefers-reduced-motion` si animás. No uses flashes
-rápidos para demostrar efectos; ofrecé alternativas estáticas o intensidad limitada.
-Para canvas, agregá descripción textual del estado. No uses color como única señal.
+Keyboard-accessible controls, visible focus, labels, and sufficient contrast.
+A layout that works on desktop and in a narrow viewport without useless horizontal scrolling.
+Pausable motion; respect `prefers-reduced-motion` if you animate. Do not use rapid
+flashes to demonstrate effects; offer static alternatives or limited intensity.
+For canvas, add a text description of the state. Do not use color as the only signal.
 
-## Comprobaciones antes de presentar
+## Checks before presenting
 
-1. Abrir el HTML local sin servidor ni red; comprobar carga y ausencia de errores de consola.
-2. Cambiar al menos un control y verificar el cambio sustancial de la salida.
-3. Pausar/reiniciar, cuando corresponda, y comprobar el estado esperado.
-4. Probar entradas límite o inválidas si hay formularios/comandos.
-5. Si hay exportación real, abrir/inspeccionar el archivo y validar estructura básica.
-6. Revisar navegación por teclado y notas de simulación en el viewport de la prueba. Agregar un ancho móvil cuando el experimento o un cambio responsive lo requiera.
+1. Open the local HTML file without a server or network; check that it loads without console errors.
+2. Change at least one control and verify the substantial change in the output.
+3. Pause/reset, when applicable, and check the expected state.
+4. Test edge or invalid inputs if there are forms/commands.
+5. If there is a real export, open/inspect the file and validate its basic structure.
+6. Review keyboard navigation and simulation notes in the test viewport. Add a mobile width when the experiment or a responsive change requires it.
 
-Guardar capturas en la carpeta indicada por el repositorio, normalmente `.scratch/screenshots/<task-slug>/`. Conservar evidencia única y el contexto necesario. Si hay residuos, registrar el lote y su dueño; retirarlos sólo con la autoridad que exige el proyecto. Cerrar una ronda no autoriza borrados ni movimientos.
+Save screenshots in the folder that the repository specifies, usually `.scratch/screenshots/<task-slug>/`. Keep unique evidence and the necessary context. If there is leftover material, record the batch and its owner; remove it only with the authority that the project requires. Closing a round does not authorize deletions or moves.
 
-Registrá resultados concretos. Un screenshot sólo prueba apariencia en un estado;
-no demuestra interacción. Una prueba de interacción tampoco prueba valor del producto.
-Sin navegador disponible, registrá `not-run`; no asegures pruebas no realizadas.
+Record concrete results. A screenshot only proves the appearance of one state;
+it does not demonstrate interaction. An interaction test does not prove product value either.
+Without an available browser, record `not-run`; do not claim tests that you did not run.

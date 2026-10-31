@@ -10,7 +10,7 @@ HERE = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('session', HERE / 'scripts' / 'session.py')
 session = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(session)
-HTML = '<!doctype html><html lang="es"><head><title>Prueba estructural</title></head><body><p>No es una demo de producto.</p></body></html>'
+HTML = '<!doctype html><html lang="en"><head><title>Structural test</title></head><body><p>Not a product demo.</p></body></html>'
 
 
 class SessionTests(unittest.TestCase):
@@ -20,9 +20,9 @@ class SessionTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         (self.root / 'source.ts').write_text('export const unchanged = true;')
         (self.root / '.gitignore').write_text('node_modules\n')
-        self.sid, self.folder = session.initialize(self.root, 'Proyecto de prueba', 'Explorar capacidades')
+        self.sid, self.folder = session.initialize(self.root, 'Test project', 'Explore capabilities')
         self.data = json.loads((HERE / 'assets' / 'idea-input.example.json').read_text())
-        self.data['title'] = 'Una capacidad distinta'
+        self.data['title'] = 'A distinct capability'
 
     def add(self, title=None, data=None):
         payload = copy.deepcopy(data or self.data)
@@ -38,38 +38,38 @@ class SessionTests(unittest.TestCase):
         self.assertEqual((self.root / 'source.ts').read_text(), 'export const unchanged = true;')
         self.assertEqual((self.root / '.gitignore').read_text(), 'node_modules\n')
         self.assertEqual(set(p.name for p in self.root.iterdir()), {'source.ts', '.gitignore', '.scratch'})
-        self.assertIn('El helper no inspeccionó', (self.folder / 'context.md').read_text())
+        self.assertIn('The helper did not inspect', (self.folder / 'context.md').read_text())
 
     def test_ids_are_sequential_and_survive_status_changes(self):
         self.assertEqual(self.add(), 'I001')
-        session.decide(self.root, self.sid, 'I001', 'discarded', 'El usuario descartó esta idea.')
-        self.assertEqual(self.add('Otra capacidad'), 'I002')
+        session.decide(self.root, self.sid, 'I001', 'discarded', 'The user discarded this idea.')
+        self.assertEqual(self.add('Another capability'), 'I002')
         session.validate(self.root, self.sid)
 
     def test_duplicate_title_is_rejected(self):
         self.add()
         with self.assertRaises(session.SessionError):
-            self.add('  UNA CAPACIDAD DISTINTA  ')
+            self.add('  A DISTINCT CAPABILITY  ')
         self.assertFalse((self.folder / 'ideas' / 'I002').exists())
 
     def test_parent_lineage_requires_existing_ideas(self):
         self.add()
         data = copy.deepcopy(self.data)
-        data.update(title='Variante de la primera', parent_ids=['I001'])
+        data.update(title='Variant of the first', parent_ids=['I001'])
         self.assertEqual(self.add(data=data), 'I002')
-        data.update(title='Variante imposible', parent_ids=['I999'])
+        data.update(title='Impossible variant', parent_ids=['I999'])
         with self.assertRaises(session.SessionError):
             self.add(data=data)
 
     def test_decision_records_user_reason_but_no_implementation_status(self):
         self.add()
-        session.decide(self.root, self.sid, 'I001', 'saved', 'El usuario quiere conservarla, no construirla.')
+        session.decide(self.root, self.sid, 'I001', 'saved', 'The user wants to keep it, not build it.')
         self.assertEqual(self.idea()['status'], 'saved')
         events = json.loads((self.folder / 'session.json').read_text())['events']
         self.assertEqual(events[-1]['from'], 'proposed')
         self.assertEqual(events[-1]['to'], 'saved')
         with self.assertRaises(session.SessionError):
-            session.decide(self.root, self.sid, 'I001', 'approved-for-implementation', 'No existe ese estado.')
+            session.decide(self.root, self.sid, 'I001', 'approved-for-implementation', 'That status does not exist.')
 
     def test_silence_never_changes_status(self):
         self.add()
@@ -83,11 +83,11 @@ class SessionTests(unittest.TestCase):
 
     def test_revision_preserves_previous_content_and_status(self):
         self.add()
-        session.decide(self.root, self.sid, 'I001', 'saved', 'Conservar por pedido del usuario.')
+        session.decide(self.root, self.sid, 'I001', 'saved', 'Keep at the request of the user.')
         data = copy.deepcopy(self.data)
-        data['pitch'] = 'Una explicación refinada del mismo resultado.'
-        revised_html = HTML.replace('No es una demo de producto.', 'Otra muestra estructural.')
-        session.revise(self.root, self.sid, 'I001', data, revised_html, 'El usuario pidió refinar la muestra.')
+        data['pitch'] = 'A refined explanation of the same outcome.'
+        revised_html = HTML.replace('Not a product demo.', 'Another structural sample.')
+        session.revise(self.root, self.sid, 'I001', data, revised_html, 'The user asked to refine the sample.')
         self.assertEqual(self.idea()['revision'], 2)
         self.assertEqual(self.idea()['status'], 'saved')
         backup = self.folder / 'ideas' / 'I001' / 'revisions' / 'r001'
@@ -97,12 +97,12 @@ class SessionTests(unittest.TestCase):
 
     def test_self_parent_and_forward_parent_cannot_be_added_by_revision(self):
         self.add()
-        self.add('Segunda idea')
+        self.add('Second idea')
         for parent in ['I001', 'I002']:
             data = copy.deepcopy(self.data)
             data['parent_ids'] = [parent]
             with self.assertRaises(session.SessionError):
-                session.revise(self.root, self.sid, 'I001', data, HTML, 'No debe permitir ciclos.')
+                session.revise(self.root, self.sid, 'I001', data, HTML, 'Must not allow cycles.')
 
     def test_template_and_remote_scripts_are_rejected(self):
         for content in [HTML.replace('<body>', '<body><!-- BRAINSTORMER_TEMPLATE_ONLY -->'), HTML.replace('</body>', '<script src="https://invalid.test/a.js"></script></body>')]:
@@ -117,7 +117,7 @@ class SessionTests(unittest.TestCase):
         data['prototype']['mode'] = 'omitted'
         with self.assertRaises(session.SessionError):
             session.add_idea(self.root, self.sid, data, None)
-        session.add_idea(self.root, self.sid, data, None, 'El usuario pidió sólo ideas esta ronda.')
+        session.add_idea(self.root, self.sid, data, None, 'The user asked for ideas only in this round.')
         self.assertIsNone(self.idea()['prototype_path'])
         self.assertNotIn('href="ideas/I001/prototype.html"', (self.folder / 'index.html').read_text())
         session.validate(self.root, self.sid)
@@ -136,9 +136,9 @@ class SessionTests(unittest.TestCase):
 
     def test_context_is_preserved_when_rendering(self):
         path = self.folder / 'context.md'
-        path.write_text('Contexto revisado por el agente.')
+        path.write_text('Context reviewed by the agent.')
         self.add()
-        self.assertEqual(path.read_text(), 'Contexto revisado por el agente.')
+        self.assertEqual(path.read_text(), 'Context reviewed by the agent.')
 
     def test_traversal_is_rejected(self):
         for sid in ['../outside', str(self.folder), '.', 'a/b']:
@@ -152,7 +152,7 @@ class SessionTests(unittest.TestCase):
         try:
             index.symlink_to(outside)
         except (OSError, NotImplementedError):
-            self.skipTest('No hay permisos para probar symlinks en este sistema.')
+            self.skipTest('No permission to test symlinks on this system.')
         with self.assertRaises(session.SessionError):
             session.render(self.root, self.sid)
         self.assertEqual(outside.read_text(), 'export const unchanged = true;')
@@ -165,9 +165,9 @@ class SessionTests(unittest.TestCase):
         try:
             (other / '.scratch').symlink_to(target, target_is_directory=True)
         except (OSError, NotImplementedError):
-            self.skipTest('No hay permisos para probar symlinks en este sistema.')
+            self.skipTest('No permission to test symlinks on this system.')
         with self.assertRaises(session.SessionError):
-            session.initialize(other, 'Otro', 'No escapar')
+            session.initialize(other, 'Other', 'Do not escape')
         self.assertEqual(list(target.iterdir()), [])
 
     def test_validate_is_read_only_and_rejects_tampered_paths(self):
@@ -182,7 +182,7 @@ class SessionTests(unittest.TestCase):
             session.validate(self.root, self.sid)
 
     def test_multiple_sessions_do_not_overwrite_previous(self):
-        sid2, folder2 = session.initialize(self.root, 'Proyecto de prueba', 'Explorar de nuevo')
+        sid2, folder2 = session.initialize(self.root, 'Test project', 'Explore again')
         self.assertNotEqual(sid2, self.sid)
         self.assertTrue(folder2.exists() and self.folder.exists())
 
@@ -193,13 +193,13 @@ class SessionTests(unittest.TestCase):
         data = copy.deepcopy(self.data)
         data['title'] = 'Ａｔｌａｓ'
         with self.assertRaises(session.SessionError):
-            session.revise(self.root, self.sid, 'I002', data, HTML, 'No duplicar con Unicode.')
+            session.revise(self.root, self.sid, 'I002', data, HTML, 'Do not duplicate through Unicode.')
         self.assertEqual(self.idea('I002')['revision'], 1)
 
     def test_saved_is_not_a_plan_and_leaves_other_ideas_pending(self):
         self.add('Atlas')
         self.add('Loops')
-        session.decide(self.root, self.sid, 'I001', 'saved', 'Conservar, no implementar.')
+        session.decide(self.root, self.sid, 'I001', 'saved', 'Keep, do not implement.')
         self.assertEqual(self.idea('I001')['status'], 'saved')
         self.assertEqual(self.idea('I002')['status'], 'proposed')
         self.assertEqual((self.root / 'source.ts').read_text(), 'export const unchanged = true;')
@@ -207,13 +207,13 @@ class SessionTests(unittest.TestCase):
 
     def test_revision_preserves_explicit_user_decision(self):
         self.add('Atlas')
-        session.decide(self.root, self.sid, 'I001', 'saved', 'Conservar por el caso de uso.')
+        session.decide(self.root, self.sid, 'I001', 'saved', 'Keep for the use case.')
         data = copy.deepcopy(self.data)
-        data.update(title='Atlas',pitch='Una demostración refinada del mismo resultado.')
-        session.revise(self.root, self.sid, 'I001', data, HTML, 'Refinar experiencia, no planificar.')
+        data.update(title='Atlas',pitch='A refined demonstration of the same outcome.')
+        session.revise(self.root, self.sid, 'I001', data, HTML, 'Refine the experience, do not plan.')
         item = self.idea()
         self.assertEqual(item['status'], 'saved')
-        self.assertEqual(item['decision_reason'], 'Conservar por el caso de uso.')
+        self.assertEqual(item['decision_reason'], 'Keep for the use case.')
         self.assertEqual(item['revision'], 2)
         self.assertTrue((self.folder / 'ideas/I001/revisions/r001/idea.json').is_file())
 

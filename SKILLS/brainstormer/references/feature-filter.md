@@ -1,72 +1,72 @@
-# Filtro de features — capacidades, no tareas
+# Feature filter — capabilities, not tasks
 
-Usar al seleccionar una ronda; no es un score de negocio ni un ranking automático.
+Use it when you select a round; it is not a business score or an automatic ranking.
 
-## La frase que debe poder completar cada opción
+## The sentence that each option must be able to complete
 
-«Para [persona y situación], permitir [acción nueva] produce [resultado útil]
-que hoy requiere [alternativa real / paso manual / capacidad no encontrada].»
+"For [person and situation], enabling [new action] produces [useful outcome]
+that today requires [real alternative / manual step / capability not found]."
 
-La última parte exige evidencia o incertidumbre explícita. Un ejemplo inventado
-sirve como hipótesis, no como prueba de una limitación real del producto.
+The last part requires evidence or explicit uncertainty. An invented example
+works as a hypothesis, not as proof of a real product limitation.
 
-## Cuatro diferencias que no hay que confundir
+## Four differences not to confuse
 
-| Tipo | Ejemplo | Tratamiento |
+| Type | Example | Treatment |
 | --- | --- | --- |
-| Mantenimiento | Corregir un crash al exportar | Fuera de esta sesión, salvo bloqueo breve. |
-| Ajuste incremental | Un preset de un efecto ya disponible | No alcanza por sí solo. |
-| Capacidad nueva | Muestrear instantes distintos por zona de una imagen | Candidata si cambia la posibilidad expresiva. |
-| Flujo nuevo | Entregar frames y coordenadas como atlas | Candidata si abre un destino útil, no por tener otra extensión. |
+| Maintenance | Fix a crash on export | Outside this session, unless it is a brief blocker. |
+| Incremental tweak | A preset of an effect that is already available | Not enough on its own. |
+| New capability | Sample different instants per zone of an image | Candidate if it changes the expressive possibility. |
+| New flow | Deliver frames and coordinates as an atlas | Candidate if it opens a useful destination, not because it has another extension. |
 
-No rechaces efectos pequeños porque son fáciles de implementar. No aceptes una
-feature sólo porque es ambiciosa. Considerá cambios sustanciales en resultados,
-no líneas de código, cantidad de pantallas o presencia de IA.
+Do not reject small effects because they are easy to implement. Do not accept a
+feature only because it is ambitious. Consider substantial changes in outcomes,
+not lines of code, number of screens, or presence of AI.
 
-## Selección de una ronda
+## Selecting a round
 
-Explorá más candidatas que las que mostrás. Descartá las que ya existen, los clones
-semánticos, las ideas sin usuario concreto y las que sólo agregan gestión o UI.
-Elegí opciones con diferencias observables y respetá la cantidad pedida. Si faltan
-candidatas sólidas, explicá el límite; no rellenes con duplicados ni cambies el
-alcance silenciosamente.
+Explore more candidates than you show. Discard the ones that already exist, semantic
+clones, ideas without a concrete user, and the ones that only add management or UI.
+Choose options with observable differences and respect the requested count. If solid
+candidates are missing, explain the limit; do not pad with duplicates or change the
+scope silently.
 
-Variar fuentes, efectos, tiempo, composición y salidas es una forma de explorar,
-no una obligación de cubrir categorías. Una ronda sólo de efectos es válida:
-cada opción tiene comportamiento, caso de uso y HTML propios.
+Varying sources, effects, time, composition, and outputs is a way to explore,
+not an obligation to cover categories. An effects-only round is valid:
+each option has its own behavior, use case, and HTML.
 
-Ejemplos de formulación:
+Phrasing examples:
 
-- No: «Nuevos efectos». Sí: «Desfase temporal por franjas: cada zona muestra un
-  instante distinto; permite convertir movimiento en una deformación temporal».
-- No: «Animaciones mejores». Sí: «Componer ciclos con inicio y final compatibles,
-  con comparación visible de la unión». No implica que el producto carezca de loops.
-- No: «Exportar a más sitios». Sí: «Atlas regular con alpha y coordenadas para
-  reutilizar una animación fuera del editor», contrastando primero las salidas reales.
-- No: «Una CLI más fácil». Sí: «Recetas parametrizadas que permiten ensayar una
-  transformación sobre un conjunto de entradas y comparar sus resultados».
+- No: "New effects". Yes: "Time offset by strips: each zone shows a different
+  instant; it lets you turn motion into a temporal deformation".
+- No: "Better animations". Yes: "Compose cycles whose start and end match,
+  with a visible comparison of the join". It does not imply that the product lacks loops.
+- No: "Export to more places". Yes: "Regular atlas with alpha and coordinates to
+  reuse an animation outside the editor", after you check the real outputs first.
+- No: "An easier CLI". Yes: "Parameterized recipes that let you try a
+  transformation on a set of inputs and compare their results".
 
-## Riesgos sin convertir la sesión en un plan
+## Risks without turning the session into a plan
 
-Mencioná una incertidumbre determinante cuando importe: coste de servicio,
-privacidad, permiso de hardware, compatibilidad de salida, tamaño de datos o
-incoherencia con el público. No hagas tickets, arquitectura, cronogramas o
-estimaciones. El prototipo prueba una experiencia, no esas garantías.
+Mention a decisive uncertainty when it matters: service cost,
+privacy, hardware permission, output compatibility, data size, or
+mismatch with the audience. Do not make tickets, architecture, schedules, or
+estimates. The prototype tests an experience, not those guarantees.
 
-No ofrezcas marketplace, colaboración, inteligencia artificial o monetización
-como defaults universales. Tampoco los prohíbas si existe una razón específica
-y evidencia de valor en el proyecto: exigí el mismo filtro que a otras features.
+Do not offer a marketplace, collaboration, artificial intelligence, or monetization
+as universal defaults. Do not forbid them either if there is a specific reason
+and evidence of value in the project: apply the same filter as to other features.
 
-## Reacción del usuario
+## User reaction
 
-Una ronda puede conservar varias ideas. No fuerces un ganador. Profundizar quiere
-decir probar una diferencia, variante, combinación o caso de uso; no discutir
-variables, endpoints o implementación. No interpretes el silencio como rechazo.
+A round can keep several ideas. Do not force a winner. Going deeper means
+testing a difference, variant, combination, or use case; it does not mean discussing
+variables, endpoints, or implementation. Do not read silence as rejection.
 
-«Guardemos todo» conserva las opciones, no crea un backlog. «Hacé el plan de I003»
-permite un handoff a planificación fuera de la sesión; no permite ejecutar ese plan.
-«Más» no obliga a decidir lo anterior. «Dale» continúa la acción exploratoria actual.
+"Let's save everything" keeps the options; it does not create a backlog. "Make the plan for I003"
+allows a handoff to planning outside the session; it does not allow executing that plan.
+"More" does not require a decision on the previous round. "Go ahead" continues the current exploratory action.
 
-Al volver a una idea descartada por una razón nueva, reconocé explícitamente su
-historial y la diferencia. No la vuelvas a presentar con otro nombre como inédita.
-Usá identificadores de sesión + idea al comparar ideas de sesiones diferentes.
+When you return to a discarded idea for a new reason, explicitly acknowledge its
+history and the difference. Do not present it again under another name as brand-new.
+Use session + idea identifiers when you compare ideas from different sessions.

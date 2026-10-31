@@ -1,152 +1,152 @@
-# Contrato de sesión
+# Session contract
 
-Este contrato aplica a sesiones persistentes. Una ronda pedida solo en chat puede omitir archivos. Usar la ruta de artefactos exigida por el repositorio; el helper admite únicamente `.scratch/brainstorming/`, por lo que otra estructura requiere mantenimiento manual.
+This contract applies to persistent sessions. A round requested only in chat can skip files. Use the artifact path that the repository requires; the helper supports only `.scratch/brainstorming/`, so another structure requires manual maintenance.
 
-## Fuentes y evidencia
+## Sources and evidence
 
-Una fuente debe identificar un archivo/rango, símbolo, prueba, documento o
-instrucción del usuario realmente leído. Guardá la referencia de versión si está
-verificada. Nunca conviertas recuerdos, un tree SHA o una rama leída parcialmente
-en una auditoría del último commit.
+A source must identify a file/range, symbol, test, document, or
+user instruction that was actually read. Save the version reference if it is
+verified. Never turn memories, a tree SHA, or a partially read branch
+into an audit of the latest commit.
 
-Usá tres resultados posibles para la novedad:
+Use three possible results for novelty:
 
-- `not-found-in-inspected-scope`: no apareció en el alcance documentado; no prueba ausencia absoluta.
-- `distinct-extension`: parte de algo existente, pero habilita un resultado nuevo; describí la diferencia.
-- `unknown`: propuesta exploratoria cuya ausencia aún no está verificada.
+- `not-found-in-inspected-scope`: it did not appear in the documented scope; it does not prove absolute absence.
+- `distinct-extension`: it builds on something existing, but enables a new outcome; describe the difference.
+- `unknown`: an exploratory proposal whose absence is not verified yet.
 
-Confianza `low`, `medium` o `high` expresa confianza en esa evaluación, no éxito
-comercial ni viabilidad garantizada. Con sólo documentación o acceso fallido,
-normalmente corresponde `unknown` y confianza `low`.
+Confidence `low`, `medium`, or `high` expresses confidence in that assessment, not commercial
+success or guaranteed feasibility. With documentation only or failed access,
+`unknown` and confidence `low` usually apply.
 
-Una implementación parcial es trabajo existente, no una idea inédita. Podés explorar
-un resultado nuevo sobre ella, pero identificá la parte existente y la diferencia.
-No infieras demanda, ingresos, «10×», tiempo de desarrollo o rendimiento sin datos.
+A partial implementation is existing work, not a brand-new idea. You can explore
+a new outcome on top of it, but identify the existing part and the difference.
+Do not infer demand, revenue, "10×", development time, or performance without data.
 
-## Archivos y consistencia
+## Files and consistency
 
-- `context.md`: escrito por el agente; alcance, producto, reglas, evidencia, límites,
-  vínculo con sesiones previas. El helper no lo sobrescribe al renderizar.
-- `session.json`: identificador, proyecto, fechas, título, IDs e historial de acciones.
-- `ideas/I001/idea.json`: ficha canónica, estado y notas de decisión.
-- `ideas/I001/prototype.html`: demo actual, salvo omisión explícita justificada.
-- `ideas/I001/revisions/r001/`: ficha y demo anteriores cuando se refina la misma idea.
-- `brief.md`, `session.md` e `index.html`: vistas regenerables. No edites sólo una vista.
+- `context.md`: written by the agent; scope, product, rules, evidence, limits,
+  link to previous sessions. The helper does not overwrite it when it renders.
+- `session.json`: identifier, project, dates, title, IDs, and action history.
+- `ideas/I001/idea.json`: canonical idea record, status, and decision notes.
+- `ideas/I001/prototype.html`: current demo, unless there is an explicit, justified omission.
+- `ideas/I001/revisions/r001/`: previous idea record and demo when the same idea is refined.
+- `brief.md`, `session.md`, and `index.html`: regenerable views. Do not edit only one view.
 
-El helper está pensado para **un escritor por sesión**. Las escrituras de archivos
-son atómicas individualmente, no una transacción multiarchivo ni un sistema de
-sincronización. No uses dos agentes escribiendo la misma sesión a la vez.
+The helper is designed for **one writer per session**. File writes
+are individually atomic; they are not a multi-file transaction or a
+sync system. Do not use two agents that write to the same session at the same time.
 
-No pongas secretos, tokens, datos personales reales ni contenido privado innecesario
-en el laboratorio: podría terminar en un repositorio público. No cambies `.gitignore`
-por tu cuenta. Al compartir un ZIP, revisá los datos primero.
+Do not put secrets, tokens, real personal data, or unnecessary private content
+in the lab: it could end up in a public repository. Do not change `.gitignore`
+on your own. When you share a ZIP, review the data first.
 
-## Abrir una sesión con el helper opcional
+## Open a session with the optional helper
 
-Sustituí `<skill>` y `<proyecto>` por rutas reales. En Windows puede usarse `py -3`
-en lugar de `python`, según la instalación disponible.
-
-```sh
-python <skill>/scripts/session.py init --root <proyecto> --name mi-proyecto --title "Explorar nuevas capacidades"
-```
-
-El comando imprime un ID de sesión y su ruta; usá ese ID literalmente en los demás
-comandos. Primero completá `context.md`. No inventes que el helper inspeccionó el repo.
-
-Construí la ficha de entrada siguiendo `assets/idea-input.example.json` y el esquema
-`assets/idea.schema.json`. Creá un HTML auténtico basado, si resulta útil, en
-`assets/prototype-template.html`; quitá el marcador de plantilla **sólo después**
-de implementar la interacción que prueba la idea.
-
-Creá también estos borradores dentro de la propia sesión, por ejemplo en `drafts/`.
-No uses el directorio de la skill como lugar de trabajo.
+Replace `<skill>` and `<project>` with real paths. On Windows, you can use `py -3`
+instead of `python`, depending on the available installation.
 
 ```sh
-python <skill>/scripts/session.py add --root <proyecto> --session <id> --idea <ruta-draft.json> --prototype <ruta-demo.html>
-python <skill>/scripts/session.py decide --root <proyecto> --session <id> --id I001 --status saved --reason "El usuario quiere conservar esta posibilidad por…"
-python <skill>/scripts/session.py revise --root <proyecto> --session <id> --id I001 --idea <ruta-draft.json> --prototype <ruta-demo.html> --reason "Comparación solicitada de dos comportamientos"
-python <skill>/scripts/session.py render --root <proyecto> --session <id>
-python <skill>/scripts/session.py validate --root <proyecto> --session <id>
+python <skill>/scripts/session.py init --root <project> --name my-project --title "Explore new capabilities"
 ```
 
-La omisión de un prototipo requiere `prototype.mode = "omitted"`, una limitación
-explícita en la ficha y `--omit-prototype "razón"` en vez de `--prototype`. Usalo
-sólo por pedido del usuario o limitación real, nunca para disimular trabajo pendiente.
+The command prints a session ID and its path; use that ID literally in the other
+commands. Fill in `context.md` first. Do not claim that the helper inspected the repo.
 
-El helper comprueba forma, rutas, estados, IDs y algunos errores HTML elementales.
-**No certifica** relevancia, novedad, calidad visual, seguridad de JavaScript ni que
-una interacción tenga sentido. El HTML es código: revisalo antes de abrir material
-de terceros. El agente debe hacer esas comprobaciones por separado.
+Build the input idea record from `assets/idea-input.example.json` and the schema
+`assets/idea.schema.json`. Create an authentic HTML file, based on
+`assets/prototype-template.html` if that is useful; remove the template marker **only after**
+you implement the interaction that tests the idea.
 
-## Ficha de una idea
+Also create these drafts inside the session itself, for example in `drafts/`.
+Do not use the skill directory as a workspace.
 
-Campos de entrada (sin IDs ni fechas, que asigna el helper):
+```sh
+python <skill>/scripts/session.py add --root <project> --session <id> --idea <draft-path.json> --prototype <demo-path.html>
+python <skill>/scripts/session.py decide --root <project> --session <id> --id I001 --status saved --reason "The user wants to keep this possibility because…"
+python <skill>/scripts/session.py revise --root <project> --session <id> --id I001 --idea <draft-path.json> --prototype <demo-path.html> --reason "Requested comparison of two behaviors"
+python <skill>/scripts/session.py render --root <project> --session <id>
+python <skill>/scripts/session.py validate --root <project> --session <id>
+```
 
-| Campo | Contenido |
+Omitting a prototype requires `prototype.mode = "omitted"`, an explicit
+limitation in the idea record, and `--omit-prototype "reason"` instead of `--prototype`. Use it
+only at the user's request or for a real limitation, never to hide pending work.
+
+The helper checks shape, paths, statuses, IDs, and some basic HTML errors.
+**It does not certify** relevance, novelty, visual quality, JavaScript safety, or that
+an interaction makes sense. HTML is code: review it before you open third-party
+material. The agent must do those checks separately.
+
+## Idea record
+
+Input fields (without IDs or dates, which the helper assigns):
+
+| Field | Content |
 | --- | --- |
-| `title` | Nombre de una sola capacidad, no un tema genérico. |
-| `category` | Categoría útil para este proyecto, sin taxonomía rígida obligatoria. |
-| `pitch` | Explicación breve de lo que ahora se podría hacer. |
-| `user_value` | Persona, situación y beneficio concreto. |
-| `use_case` | Un recorrido observable antes/después, no un slogan. |
-| `novelty_delta` | Diferencia con capacidades existentes o declaración de hipótesis. |
-| `evidence` | Lista de `{kind, source, finding}`; puede estar vacía sólo si se declara incertidumbre. |
+| `title` | Name of a single capability, not a generic topic. |
+| `category` | A category that is useful for this project, with no mandatory rigid taxonomy. |
+| `pitch` | Short explanation of what someone could now do. |
+| `user_value` | Person, situation, and concrete benefit. |
+| `use_case` | An observable before/after journey, not a slogan. |
+| `novelty_delta` | Difference from existing capabilities, or a statement of hypothesis. |
+| `evidence` | List of `{kind, source, finding}`; it can be empty only if uncertainty is declared. |
 | `novelty` | `{assessment, confidence, inspected_scope, uncertainty}`. |
 | `prototype` | `{mode, question, observable, limitations, checks}`. |
-| `open_question` | Incertidumbre de producto que merece observarse, no una lista técnica. |
-| `parent_ids` | IDs existentes que originaron una variante o combinación; lista vacía normalmente. |
+| `open_question` | A product uncertainty that is worth observing, not a technical list. |
+| `parent_ids` | Existing IDs that produced a variant or combination; usually an empty list. |
 
-`evidence.kind`: `code`, `test`, `documentation`, `user` o `hypothesis`.
-`prototype.mode`: `working-slice`, `approximation`, `simulation` u `omitted`.
-`checks`: lista de `{check, result}`, con `result` = `passed`, `failed` o `not-run`.
-Anotá lo realmente probado, sin convertir validación estática en prueba de navegador.
+`evidence.kind`: `code`, `test`, `documentation`, `user`, or `hypothesis`.
+`prototype.mode`: `working-slice`, `approximation`, `simulation`, or `omitted`.
+`checks`: list of `{check, result}`, with `result` = `passed`, `failed`, or `not-run`.
+Record what was actually tested, without turning static validation into browser testing.
 
-La ficha final añade `id`, `status`, `created_at`, `updated_at`, `revision`,
-`decision_reason` y `prototype_path`. No copies ciegamente esos campos al crear
-una idea nueva. `parent_ids` permite rastrear parentesco, no prioridad ni dependencia.
+The final idea record adds `id`, `status`, `created_at`, `updated_at`, `revision`,
+`decision_reason`, and `prototype_path`. Do not blindly copy those fields when you create
+a new idea. `parent_ids` lets you trace lineage, not priority or dependency.
 
-## Interacción entre rondas
+## Interaction between rounds
 
-Una primera respuesta útil puede tener esta forma:
+A useful first answer can have this shape:
 
-«El proyecto ya permite A y B; todavía tengo incertidumbre sobre C. Esta ronda
-explora resultados nuevos, no ajustes de esos controles.
+"The project already supports A and B; I am still uncertain about C. This round
+explores new outcomes, not adjustments to those controls.
 
-**I001 — Feature concreta.** Permitiría X para Y. Se diferencia de A en Z.
-[Demo local].
+**I001 — Concrete feature.** It would enable X for Y. It differs from A in Z.
+[Local demo].
 
-**I002 — Otra feature concreta.** ...
+**I002 — Another concrete feature.** ...
 
-¿Cuáles explorarías y cuáles descartarías?»
+Which ones would you explore and which would you discard?"
 
-No presentes enlaces antes de crear los archivos. No pidas elegir una sola idea
-si al usuario le interesan varias. Para «más», proponé otra ronda sin exigir cerrar
-la anterior. Para «profundizá I002», usá una demo comparativa o variante y una
-pregunta centrada en la experiencia; no derives a un diseño de arquitectura.
+Do not present links before you create the files. Do not ask the user to pick a single idea
+if they are interested in several. For "more", propose another round without requiring them to close
+the previous one. For "go deeper into I002", use a comparative demo or a variant and a
+question focused on the experience; do not drift into an architecture design.
 
-## Decisiones y cierre
+## Decisions and closing
 
-El silencio mantiene `proposed`. Una solicitud de profundización admite `exploring`.
-`Saved`, `parked` y `discarded` necesitan una reacción del usuario, no tu preferencia.
-Se permite volver desde cualquier estado con una decisión explícita y trazabilidad.
+Silence keeps `proposed`. A request to go deeper allows `exploring`.
+`Saved`, `parked`, and `discarded` need a user reaction, not your preference.
+Moving back from any status is allowed with an explicit decision and traceability.
 
-Al retomar, leé tanto las ideas guardadas como los descartes y sus razones.
-Podés volver a una descartada si el usuario lo pide o aparece evidencia nueva
-importante, pero anunciá el motivo y su relación con la idea anterior.
+When you resume, read both the saved ideas and the discards and their reasons.
+You can return to a discarded idea if the user asks for it or important new evidence
+appears, but announce the reason and its relation to the previous idea.
 
-No crees tareas por cerrar la sesión. La salida es: ideas conservadas, prototipos,
-decisiones y preguntas abiertas. Si luego piden planificar una idea, separá ese
-pedido del modo de descubrimiento. Si piden implementarla, verificá el alcance
-explícito: el resto de las ideas sigue sin autorización.
+Do not create tasks because the session closes. The output is: kept ideas, prototypes,
+decisions, and open questions. If the user later asks to plan an idea, keep that
+request separate from discovery mode. If they ask to implement it, verify the explicit
+scope: the rest of the ideas remain unauthorized.
 
-## Resumen de continuidad
+## Continuity summary
 
-Al terminar una ronda, conservá en el contexto: tema explorado, reacciones explícitas,
-ideas aún sin decidir y áreas que el usuario pidió explorar después. Son notas de
-conversación, no tareas. No arrastres restricciones específicas de un proyecto a
-otro sin evidencia. Para referir ideas de otra sesión usá su sesión e ID completos.
+When a round ends, keep in the context: the explored topic, explicit reactions,
+ideas that are still undecided, and areas that the user asked to explore later. These are
+conversation notes, not tasks. Do not carry constraints that are specific to one project into
+another without evidence. To refer to ideas from another session, use their full session and ID.
 
-Interpretá «dale», «sigamos» y «me gusta» con el alcance ya autorizado. Por sí solos
-no convierten una exploración en implementación. Un pedido de plan cambia la etapa
-y conserva su límite; una autorización de implementación permite continuar sin
-pedirla otra vez. Ni favoritos ni filtros del índice representan permisos.
+Interpret "go ahead", "let's continue", and "I like it" within the scope already authorized. On their own,
+they do not turn an exploration into an implementation. A plan request changes the stage
+and keeps its limit; an implementation authorization allows you to continue without
+asking for it again. Neither favorites nor index filters represent permissions.
